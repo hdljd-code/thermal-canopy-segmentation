@@ -23,9 +23,6 @@ python .\scripts\predict.py --self-check
 # 单张图片推理
 python .\scripts\predict.py --image .\example.jpg --ckpt .\weights\model.pth --output .\outputs\prediction.png
 
-# 数据集评价
-python .\scripts\evaluate.py --model-entry baseline --ckpt baseline=.\weights\model.pth
-
 # 冠层温度统计
 python .\scripts\analyze_temperature.py --baseline-pred-dir .\predictions\baseline --proposed-pred-dir .\predictions\proposed
 ```
