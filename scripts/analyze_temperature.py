@@ -386,11 +386,11 @@ def main(
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="论文玉米冠层温度提取统计")
+    parser = argparse.ArgumentParser(description="Maize canopy temperature extraction and statistics")
     parser.add_argument(
         "--self-check",
         action="store_true",
-        help="仅运行纯合成自检，不读取项目数据或写正式产物",
+        help="Run a synthetic self-check without project data or analysis outputs",
     )
     parser.add_argument(
         "--test-split",
@@ -407,17 +407,17 @@ if __name__ == "__main__":
     parser.add_argument(
         "--baseline-pred-dir",
         default=str(BASELINE_PRED_DIR),
-        help="基线模型预测掩膜目录",
+        help="Directory containing baseline prediction masks",
     )
     parser.add_argument(
         "--proposed-pred-dir",
         default=str(PROPOSED_PRED_DIR),
-        help="本文方法预测掩膜目录",
+        help="Directory containing proposed-method prediction masks",
     )
     parser.add_argument(
         "--output-dir",
         default=str(OUTPUT_DIR),
-        help="统计产物目录，已存在时拒绝覆盖",
+        help="Analysis output directory; must not already exist",
     )
     args = parser.parse_args()
     if args.self_check:

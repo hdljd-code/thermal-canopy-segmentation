@@ -73,14 +73,14 @@ def self_check():
 
 
 def main():
-    parser = argparse.ArgumentParser(description="单张图片分割推理入口")
-    parser.add_argument("--image", type=str, help="输入图片路径")
-    parser.add_argument("--ckpt", type=str, help="模型权重路径")
+    parser = argparse.ArgumentParser(description="Single-image segmentation inference")
+    parser.add_argument("--image", type=str, help="Input image path")
+    parser.add_argument("--ckpt", type=str, help="Model checkpoint path")
     parser.add_argument(
         "--output",
         type=str,
         default="outputs/prediction.png",
-        help="输出二值掩膜路径",
+        help="Output binary mask path",
     )
     parser.add_argument(
         "--model-entry",
@@ -99,7 +99,7 @@ def main():
     parser.add_argument(
         "--self-check",
         action="store_true",
-        help="运行CPU纯合成自检，不读取项目数据或权重",
+        help="Run a synthetic CPU self-check without project data or weights",
     )
     args = parser.parse_args()
 
@@ -108,7 +108,7 @@ def main():
         return
 
     if not args.image or not args.ckpt:
-        parser.error("正常推理必须同时提供 --image 和 --ckpt")
+        parser.error("Inference requires both --image and --ckpt")
 
     model_info = load_model(
         num_classes=args.num_classes,

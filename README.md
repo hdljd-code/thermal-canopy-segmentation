@@ -1,8 +1,6 @@
 # 玉米冠层热红外图像分割
 
-本仓库提供论文相关的公开实验框架，包含 ResNet50-U-Net 基线、训练与评价流程、单图推理以及冠层温度统计代码，改进模型通过统一模型接口接入。
-
-ASF、MSB 与 ASF+MSB 文件提供独立的公开接入接口，相关核心实现不随仓库分发。
+本仓库提供论文相关的部分公开实验框架，包含 ResNet50-U-Net 基线、训练与评价流程、单图推理以及冠层温度统计代码，改进模型通过统一模型接口展示其在训练与评价流程中的接入方式。
 
 ## 安装
 
@@ -17,8 +15,6 @@ pip install -r requirements.txt
 ```powershell
 # 训练公开基线
 python .\scripts\train.py --experiment baseline_adamw
-
-# 未提供预训练骨干权重时
 python .\scripts\train.py --experiment baseline_adamw --no-pretrained
 
 # 推理代码验证

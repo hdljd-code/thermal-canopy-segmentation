@@ -1,4 +1,5 @@
 import argparse
+import datetime
 import sys
 from pathlib import Path
 
@@ -92,27 +93,27 @@ def build_config(experiment_name, run_id):
 
 
 def main():
-    parser = argparse.ArgumentParser(description="论文实验训练入口")
+    parser = argparse.ArgumentParser(
+        description="Training entry point for paper experiments"
+    )
     parser.add_argument(
         "--experiment",
         required=True,
         choices=tuple(EXPERIMENTS),
-        help="选择论文中的实验配置",
-    )
-    parser.add_argument(
-        "--run-id",
-        default="run1",
-        help="本次运行的通用标识，仅用于区分输出目录",
+        help="Select an experiment configuration",
     )
     parser.add_argument(
         "--no-pretrained",
         action="store_true",
-        help="不加载预训练骨干权重",
+        help="Disable pretrained backbone weights and backbone freezing",
     )
     args = parser.parse_args()
 
-    config = build_config(args.experiment, args.run_id)
+    run_id = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+    config = build_config(args.experiment, run_id)
     config["pretrained"] = not args.no_pretrained
+    if args.no_pretrained:
+        config["Freeze_Train"] = False
     model_name = EXPERIMENTS[args.experiment]["model_name"]
     model_class = (
         Unet if model_name == "baseline" else get_model_class(model_name)

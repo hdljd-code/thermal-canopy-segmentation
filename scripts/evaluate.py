@@ -106,7 +106,7 @@ def parse_ckpt_args(ckpt_list):
     experiments = []
     for item in ckpt_list:
         if "=" not in item:
-            raise ValueError(f"--ckpt 格式错误，应为 name=path，实际: {item}")
+            raise ValueError(f"Invalid --ckpt format: expected name=path, got {item}")
         name, path = item.split("=", 1)
         name = name.strip()
         path = path.strip()
@@ -455,7 +455,7 @@ def evaluate_one_checkpoint(
 
 
 def main():
-    parser = argparse.ArgumentParser(description="论文模型评价入口")
+    parser = argparse.ArgumentParser(description="Model evaluation entry point")
 
 
     parser.add_argument("--split-file", type=str, default="dataset/splits/test.txt")
@@ -468,7 +468,7 @@ def main():
                         choices=["baseline", "msb", "asf", "asf_msb"])
 
     parser.add_argument("--ckpt",          action="append", required=True,
-                        help="格式: name=path，可重复传入")
+                        help="Checkpoint in name=path format; may be repeated")
 
 
     parser.add_argument("--output-dir",    type=str, default="outputs/evaluation")
